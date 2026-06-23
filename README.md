@@ -1,8 +1,8 @@
 # CustomerOrderManager
 
 Build & Run
-
-Clone repository in VS.
+--------------
+Use Github to clone repo, or use Zip file to open.
 Launch, should launch into browser with Swagger UI.
 Migrations should apply database.
 
@@ -13,13 +13,13 @@ Publish to executable.
 
 
 Assumptions
-
+------------
 Guids to be used to avoid incrementation in practice.
 
 
 
 Design Desicions
-
+-----------------
 Created Repositories to use DbContext, to avoid any DbContext used within an API layer.
 EF Core was chosen for data access, obvious reason being it is preferreed but also because I have toyed around with it within my personal project mentioned in the last call and getting more familiar will be good.
 
@@ -32,6 +32,6 @@ For error handling I did not have time to explore a global error handler to avoi
 
 
 Future Improvements
-
+--------------------
 As mentioned, error handling would be a place for improvement, as well as adding the rest of the CRUD operations mainly delete for the parameter to demonstrate the Update/Create it is doing if the type already exists.
 There is also potential for unit tests to check the various results and their corrosponding messages.
