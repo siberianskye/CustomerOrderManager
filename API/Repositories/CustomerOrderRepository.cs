@@ -9,8 +9,8 @@ namespace CustomerOrderManager.Business.Repositories
 {
     public class CustomerOrderRepository : ICustomerOrderRepository
     {
-        private ICustomerOrderManagerDbContext __CustomerOrderManagerDbContext;
-        private ICustomerOrderParameterRepository __CustomerOrderParameterRepository;
+        private readonly ICustomerOrderManagerDbContext __CustomerOrderManagerDbContext;
+        private readonly ICustomerOrderParameterRepository __CustomerOrderParameterRepository;
 
         public CustomerOrderRepository(ICustomerOrderManagerDbContext customerOrderManagerDbContext, ICustomerOrderParameterRepository customerOrderParameterRepository)
         {
@@ -43,7 +43,7 @@ namespace CustomerOrderManager.Business.Repositories
         private async Task<bool> IsExistingCustomerOrder(CustomerOrder customerOrder)
         {
             return __CustomerOrderManagerDbContext.CustomerOrders.Any(order =>
-                order.CustomerName == customerOrder.CustomerName &&
+                order.CustomerName.ToLower() == customerOrder.CustomerName.ToLower() &&
                 order.OrderDate == customerOrder.OrderDate &&
                 order.OrderValue == customerOrder.OrderValue
                 );
@@ -62,7 +62,7 @@ namespace CustomerOrderManager.Business.Repositories
 
             return new CreateCustomerOrderResponse()
             {
-                IsSuccess = customerOrder.ID > 0,
+                IsSuccess = _ValidationResult == CustomerOrderValidationResult.Validated,
                 CustomerOrder = customerOrder,
                 ValidationResult = _ValidationResult
             };

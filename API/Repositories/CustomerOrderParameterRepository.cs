@@ -11,7 +11,7 @@ namespace CustomerOrderManager.Business.Repositories
 {
     public class CustomerOrderParameterRepository : ICustomerOrderParameterRepository
     {
-        private ICustomerOrderManagerDbContext __CustomerOrderManagerDbContext;
+        private readonly ICustomerOrderManagerDbContext __CustomerOrderManagerDbContext;
         public CustomerOrderParameterRepository(ICustomerOrderManagerDbContext customerOrderManagerDbContext)
         {
             __CustomerOrderManagerDbContext = customerOrderManagerDbContext ?? throw new ArgumentNullException(nameof(customerOrderManagerDbContext));
