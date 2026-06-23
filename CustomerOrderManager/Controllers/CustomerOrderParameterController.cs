@@ -9,7 +9,7 @@ namespace CustomerOrderManager.Controllers
     [Route("api/[controller]/[action]")]
     public class CustomerOrderParameterController : ControllerBase
     {
-        private ICustomerOrderParameterRepository __CustomerOrderParameterRepository;
+        private readonly ICustomerOrderParameterRepository __CustomerOrderParameterRepository;
 
         public CustomerOrderParameterController(ICustomerOrderParameterRepository customerOrderParameterRepository)
         {
@@ -38,10 +38,8 @@ namespace CustomerOrderManager.Controllers
 
                 return Ok(_Parameter?.CustomerOrderParameter_UID ?? Guid.Empty);
             }
-            catch /*(Exception exception)*/
-            {
-                //LogException(exception);
-
+            catch
+            {           
                 return StatusCode(500);
             }
         }
