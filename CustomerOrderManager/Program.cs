@@ -33,6 +33,15 @@ builder.Services.AddSwaggerGen(swagger =>
 
 var app = builder.Build();
 
+//do db migrations
+using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+{
+    using (var context = serviceScope.ServiceProvider.GetService<CustomerOrderManagerDbContext>())
+    {
+        context.Database.Migrate();
+    }
+}
+
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ICustomerOrderManagerDbContext>();
@@ -57,15 +66,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-//do db migrations
-using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-{
-    using (var context = serviceScope.ServiceProvider.GetService<CustomerOrderManagerDbContext>())
-    {
-        context.Database.Migrate();
-    }
-}
 
 app.Run();
 
