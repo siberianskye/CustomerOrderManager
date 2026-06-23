@@ -58,4 +58,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+//do db migrations
+using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+{
+    using (var context = serviceScope.ServiceProvider.GetService<CustomerOrderManagerDbContext>())
+    {
+        context.Database.Migrate();
+    }
+}
+
 app.Run();
+
