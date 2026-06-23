@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="API/CustomerOrderManager.Business.csproj" />
+  <Project Path="CustomerOrderManager/CustomerOrderManager.csproj" />
+</Solution>

@@ -1,0 +1,9 @@
+@CustomerOrderManager_HostAddress = http://localhost:5240
+
+GET {{CustomerOrderManager_HostAddress}}/CustomerOrder/
+Accept: application/json
+
+###
+
+GET {{CustomerOrderManager_HostAddress}}/CustomerOrderParameter/
+Accept: application/json
